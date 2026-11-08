@@ -1,6 +1,6 @@
 Just a small file to help Album Easy users create txt files to be generated with Album Easy,
 Please read the help file within the app from the "help" button. It is a work in progress and updates will be now and then but its working.
-https://thunderstormy.github.io/albumeasy-designer/
+Click the link to use. >> https://thunderstormy.github.io/albumeasy-designer/
 
 A small partial blurb from the Album Easy website
 AlbumEasy came about because I was looking for an easy way of creating custom stamp album pages for my own use.
