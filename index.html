@@ -331,8 +331,14 @@
     <p style="color:#888; margin-top:6px; font-size:11px">Use \n for line breaks. Paragraph mode uses PAGE_TEXT_PARAGRAPH_START/END.</p>
   </div>
 
-<script src="https://cdn.jsdelivr.net/npm/konva@9.3.6/konva.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/konva@9.3.6/konva.min.js"
+        onerror="var s=document.createElement('script');s.src='https://unpkg.com/konva@9.3.6/konva.min.js';document.head.appendChild(s);"></script>
 <script>
+
+  if (typeof Konva === 'undefined') {
+    document.getElementById('canvas-wrap').innerHTML = '<p style="padding:20px;color:red">Failed to load Konva.js. Please refresh the page.</p>';
+    throw new Error('Konva not loaded');
+  }
   // ── Constants ────────────────────────────────────────────────────
   const MM = 3.78;
 
