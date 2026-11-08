@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AlbumEasy Designer — Help</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; color: #333; max-width: 720px; margin: 0 auto; padding: 24px; }
+    h1 { font-size: 1.5rem; margin-bottom: 8px; color: #1a1a1a; }
+    h2 { font-size: 1.1rem; margin-top: 24px; margin-bottom: 8px; color: #2196F3; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px; }
+    h3 { font-size: 0.95rem; margin-top: 16px; margin-bottom: 4px; }
+    p { margin-bottom: 8px; }
+    ul, ol { margin: 8px 0 8px 20px; }
+    li { margin-bottom: 4px; }
+    code { background: #f5f5f5; padding: 1px 5px; border-radius: 3px; font-size: 0.85em; }
+    .tip { background: #e3f2fd; border-left: 3px solid #2196F3; padding: 8px 12px; margin: 12px 0; font-size: 0.9rem; }
+    .warn { background: #fff3e0; border-left: 3px solid #ff9800; padding: 8px 12px; margin: 12px 0; font-size: 0.9rem; }
+    .kbd { background: #eee; border: 1px solid #ccc; border-radius: 3px; padding: 1px 5px; font-family: monospace; font-size: 0.85em; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 0.9rem; }
+    th, td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; }
+    th { background: #f5f5f5; }
+    .toc { background: #fafafa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 12px 16px; margin: 16px 0; }
+    .toc a { color: #2196F3; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .toc ul { list-style: none; margin-left: 0; }
+    .toc li { margin-bottom: 3px; }
+  </style>
+</head>
+<body>
+
+<h1>AlbumEasy Designer — Help Guide</h1>
+<p>A visual editor for designing AlbumEasy stamp album pages. Design in the browser, download a <code>.txt</code> file, and generate your PDF with the AlbumEasy CLI.</p>
+
+<div class="toc">
+  <strong>Contents</strong>
+  <ul>
+    <li><a href="#workflow">Workflow</a></li>
+    <li><a href="#toolbar">Toolbar</a></li>
+    <li><a href="#page-settings">Page Settings</a></li>
+    <li><a href="#elements">Adding Elements</a></li>
+    <li><a href="#columns">Two-Column Mode</a></li>
+    <li><a href="#undo">Undo / Redo &amp; Save / Load</a></li>
+    <li><a href="#export">Exporting</a></li>
+    <li><a href="#tips">Tips &amp; Gotchas</a></li>
+  </ul>
+</div>
+
+<h2 id="workflow">Workflow</h2>
+<ol>
+  <li>Open the designer in your browser</li>
+  <li>Set page format, margins, title, borders, etc.</li>
+  <li>Add stamps, rules, images, and text blocks</li>
+  <li>Arrange elements by dragging (they snap to the grid)</li>
+  <li>Click <strong>Download .txt</strong> to export</li>
+  <li>Run <code>./AlbumEasy -c album.txt</code> to generate the PDF</li>
+</ol>
+
+<h2 id="toolbar">Toolbar</h2>
+<table>
+  <tr><th>Button</th><th>Action</th></tr>
+  <tr><td>+ Page</td><td>Create a new page (increments page number)</td></tr>
+  <tr><td>+ Stamp</td><td>Add a stamp box at the next grid position</td></tr>
+  <tr><td>+ Rule</td><td>Add a horizontal rule line</td></tr>
+  <tr><td>+ Image</td><td>Add an image stamp (file picker on double-click)</td></tr>
+  <tr><td>+ Text</td><td>Add a text block</td></tr>
+  <tr><td>Delete</td><td>Remove the selected element</td></tr>
+  <tr><td>↩ / ↪</td><td>Undo / Redo (<span class="kbd">Ctrl+Z</span> / <span class="kbd">Ctrl+Y</span>)</td></tr>
+  <tr><td>Save .json</td><td>Download the entire project as a JSON file</td></tr>
+  <tr><td>Load .json</td><td>Restore a previously saved project</td></tr>
+  <tr><td>Download .txt</td><td>Generate the AlbumEasy command file</td></tr>
+</table>
+
+<h2 id="page-settings">Page Settings</h2>
+<p>Collapsible panel on the right side. Key sections:</p>
+
+<h3>Paper &amp; Margins</h3>
+<ul>
+  <li><strong>Paper format</strong> — A4, US Letter, Scott, Minkus, Davo, Stanley Gibbons. Sets page size and default margins.</li>
+  <li><strong>Margins</strong> — Left / Right / Top / Bottom in mm. The title is always drawn at the top margin (below the border).</li>
+</ul>
+
+<h3>Borders</h3>
+<ul>
+  <li>Three nested border lines (outer, inner 1, inner 2) with a gap between each. Set thickness to 0 to disable a line.</li>
+</ul>
+
+<h3>Title &amp; Spacing</h3>
+<ul>
+  <li><strong>Title text / size</strong> — Centre-aligned, drawn below the border.</li>
+  <li><strong>Space after title (mm)</strong> — Gap between the title and where content flow begins. The <span style="color:#2196F3">blue dashed line</span> in the canvas shows this boundary. Elements cannot be placed above it.</li>
+</ul>
+
+<h3>Grid &amp; Crop</h3>
+<ul>
+  <li><strong>Snap grid size</strong> — Elements snap to this grid when dragged (default 2 mm). Set below 0.5 to disable.</li>
+  <li><strong>Page quadrille</strong> — Stamp-album grid lines (like a Scott/Minkus page). Configurable cell size and border.</li>
+  <li><strong>Crop marks</strong> — Corner marks for trimming oversized paper.</li>
+</ul>
+
+<h3>Footer Extras</h3>
+<ul>
+  <li><strong>Page number</strong> — Position, start number, before/after text. Supports <code>$PAGES$</code> placeholder for total count.</li>
+  <li><strong>Date</strong> — Auto-inserts the generation date. Format, separator, and surrounding text configurable.</li>
+</ul>
+
+<h3>Colours</h3>
+<p>Seven colour fields (page text, border, title, footer, header, stamp text, stamp border). Only emitted in the .txt if not black. Use the datalist for common names or type any CSS colour.</p>
+
+<h3>Custom Fonts</h3>
+<p>Add (ID, font name) pairs. The ID (2–12 chars, no spaces) is used in stamp/text font fields. Emits <code>ALBUM_DEFINE_FONT</code> commands.</p>
+
+<h2 id="elements">Adding Elements</h2>
+
+<h3>Stamps</h3>
+<ul>
+  <li>Drag to position. Snaps to grid on release.</li>
+  <li>Properties: X, Y, Width, Height, Shape (rect/oval/diamond/hexagon/octagon), Font, Font size, Border thickness, Border style, Inside text, Text offset, Below left/centre/right text.</li>
+  <li>In column mode, the column is determined by X position (left of divider = left column, right = right column).</li>
+</ul>
+
+<h3>Rules</h3>
+<ul>
+  <li>Horizontal lines at a specific Y. Drag vertically to move.</li>
+  <li>Properties: Y, Thickness, Left pad, Right pad, Column (left/right in 2-col mode).</li>
+</ul>
+
+<h3>Image Stamps</h3>
+<ul>
+  <li>Double-click to open the file picker (preview shown on canvas).</li>
+  <li>Properties: Y, Width, Height, File path, Frame on/off, Below left/centre/right text.</li>
+  <li>X is cosmetic only — on export, images are centred in their row at the specified Y.</li>
+</ul>
+
+<h3>Text Blocks</h3>
+<ul>
+  <li>Drag vertically to position. The yellow dashed box sizes to fit the text (not full width).</li>
+  <li>Properties: Y, Column (Full page / Left / Right), Font, Font size, Alignment, Padding, Vspace after, Paragraph mode, Text content.</li>
+  <li>Use <code>\n</code> for line breaks.</li>
+  <li>Paragraph mode emits <code>PAGE_TEXT_PARAGRAPH_START/END</code> for multi-line flowing text.</li>
+</ul>
+
+<div class="warn">
+  <strong>Column mode limitation:</strong> In two-column mode, text and rules use flow-based positioning (<code>PAGE_VSPACE</code>). They appear sequentially after the last stamp in that column, not at an absolute Y. For text that must appear at a specific position, set Column to "Full page" and use Alignment to position it visually.
+</div>
+
+<h2 id="columns">Two-Column Mode</h2>
+<ul>
+  <li>Toggle in Page Settings. Blue tint = left column, red tint = right column.</li>
+  <li>Column divider (%) and gap (mm) control the split.</li>
+  <li>Stamps: assigned to a column by their X position relative to the divider.</li>
+  <li>Rules &amp; Text: use the Column dropdown in their properties.</li>
+  <li>Exports <code>PAGE_COLUMN_START / PAGE_COLUMN_NEXT / PAGE_COLUMN_STOP</code>.</li>
+</ul>
+
+<h2 id="undo">Undo / Redo &amp; Save / Load</h2>
+<ul>
+  <li><span class="kbd">Ctrl+Z</span> — Undo (up to 50 steps)</li>
+  <li><span class="kbd">Ctrl+Y</span> or <span class="kbd">Ctrl+Shift+Z</span> — Redo</li>
+  <li><strong>Save .json</strong> — Downloads a project file with all pages, elements, and settings.</li>
+  <li><strong>Load .json</strong> — Restores a saved project (pushes current state to undo history).</li>
+</ul>
+<p>Every action (add, delete, drag, property change, page setting change) creates an undo checkpoint.</p>
+
+<h2 id="export">Exporting</h2>
+<p>Click <strong>Download .txt</strong>. The generated file contains:</p>
+<ol>
+  <li>Header comments (generator, timestamp)</li>
+  <li>Album-level settings (size, margins, border, title, colours, fonts, etc.)</li>
+  <li>One section per page with <code>PAGE_START</code> / <code>PAGE_START_INFO</code></li>
+  <li>All elements in Y-sorted order</li>
+</ol>
+<p>Feed it to AlbumEasy: <code>./AlbumEasy -c album.txt</code></p>
+
+<h3>Info Pages</h3>
+<p>Tick the "Info page" checkbox in the toolbar to mark the current page as informational (suppresses title, border, header, footer). "In count" includes it in the page number sequence.</p>
+
+<h2 id="tips">Tips &amp; Gotchas</h2>
+<div class="tip">
+  <strong>Title position:</strong> The title is always at the top margin, below the border. You can't move it independently. To get it closer to the top, reduce the top margin. To push content down without moving the title, increase "Space after title".
+</div>
+
+<div class="tip">
+  <strong>Blue dashed line:</strong> This is the content floor. No element can be placed above it. It moves when you change the title font size or "Space after title". The faint red zone above it is the blocked area.
+</div>
+
+<div class="warn">
+  <strong>Image files:</strong> The file picker is for preview only. The exported .txt uses the file path you type in the "Path" field. Make sure the file exists relative to where you run AlbumEasy.
+</div>
+
+<div class="tip">
+  <strong>Grid snapping:</strong> If elements feel "stuck", check your snap grid size. A 2 mm grid means elements only move in 2 mm increments. Set to 0.5 for finer control.
+</div>
+
+<div class="tip">
+  <strong>Multiple pages:</strong> Use the page number input (top right) to jump between pages, or click "+ Page" to create the next one. Each page has its own elements — they don't overlap.
+</div>
+
+<p style="margin-top:24px; color:#888; font-size:0.85rem;">AlbumEasy Designer — works with AlbumEasy V4.5.0+</p>
+
+</body>
+</html>
