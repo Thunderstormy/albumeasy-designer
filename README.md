@@ -1,4 +1,5 @@
-Just a small file to help Album Easy users create txt files to be generated with Album Easy
+Just a small file to help Album Easy users create txt files to be generated with Album Easy,
+PLease read the help file within the app from the "help" button.
 https://thunderstormy.github.io/albumeasy-designer/
 
 a small partial blurb from the Album Easy website
